@@ -242,6 +242,11 @@ pow_abs.cpp
 predecessor.cpp
 prev.cpp
 rec.cpp
+rem.cpp
+remround.cpp
+remround2even.cpp
+remfloor.cpp
+remceil.cpp
 rem_pio2.cpp
 rem_pio2_cephes.cpp
 rem_pio2_medium.cpp
@@ -323,11 +328,9 @@ unary_plus.cpp
 #idivround.cpp
 #is_included_c.cpp
 #is_included.cpp
-#mod.cpp
 #muls.cpp
 #nbtrue.cpp
 #none
-#rem.cpp TODO
 #splatted_maximum.cpp//TODO all_reduce
 #splatted_minimum.cpp
 ####dot.cpp
