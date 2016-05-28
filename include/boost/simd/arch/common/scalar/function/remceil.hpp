@@ -14,6 +14,7 @@
 
 #include <boost/simd/function/div.hpp>
 #include <boost/simd/function/is_nez.hpp>
+#include <boost/simd/function/fnms.hpp>
 #include <boost/simd/function/minus.hpp>
 #include <boost/simd/function/multiplies.hpp>
 #include <boost/simd/function/ceil.hpp>
@@ -32,15 +33,17 @@ namespace boost { namespace simd { namespace ext
                           , (typename A0)
                           , bd::cpu_
                           , bs::tag::ceil_
-                          , bd::generic_< bd::signed_<A0> >
-                          , bd::generic_< bd::signed_<A0> >
+                          , bd::scalar_< bd::int_<A0> >
+                          , bd::scalar_< bd::int_<A0> >
                           )
   {
     BOOST_FORCEINLINE A0 operator() (bd::functor<bs::tag::ceil_> const&
                                     , A0 a0, A0 a1) const BOOST_NOEXCEPT
     {
-      return selsub(is_nez(a1),a0,
-                    simd::multiplies(div(ceil, a0, a1), a1));
+      if (is_nez(a1))
+        return fnms(div(ceil, a0, a1), a1, a0);
+      else
+        return a0;
     }
   };
 
@@ -48,14 +51,15 @@ namespace boost { namespace simd { namespace ext
                           , (typename A0)
                           , bd::cpu_
                           , bs::tag::ceil_
-                          , bd::generic_< bd::floating_<A0> >
-                          , bd::generic_< bd::floating_<A0> >
+                          , bd::scalar_< bd::floating_<A0> >
+                          , bd::scalar_< bd::floating_<A0> >
                           )
   {
     BOOST_FORCEINLINE A0 operator() (bd::functor<bs::tag::ceil_> const&
                                     , A0 a0, A0 a1) const BOOST_NOEXCEPT
     {
-      return a0-div(ceil, a0, a1)*a1;
+      if (is_nez(a1)&&is_eqz(a0)) return a0;
+      return fnms(div(ceil, a0, a1), a1, a0);
     }
   };
 
@@ -64,15 +68,32 @@ namespace boost { namespace simd { namespace ext
                           , bd::cpu_
                           , bs::fast_tag
                           , bs::tag::ceil_
-                          , bd::generic_< bd::signed_<A0> >
-                          , bd::generic_< bd::signed_<A0> >
+                          , bd::scalar_< bd::int_<A0> >
+                          , bd::scalar_< bd::int_<A0> >
                           )
   {
     BOOST_FORCEINLINE A0 operator() (const fast_tag &
                                     , bd::functor<bs::tag::ceil_> const&
                                     , A0 a0, A0 a1) const BOOST_NOEXCEPT
     {
-      return a0-fast_(div)(ceil, a0, a1)*a1;
+      return fnms(div(ceil, a0, a1), a1, a0);
+    }
+  };
+
+  BOOST_DISPATCH_OVERLOAD ( rem_
+                          , (typename A0)
+                          , bd::cpu_
+                          , bs::fast_tag
+                          , bs::tag::ceil_
+                          , bd::scalar_< bd::floating_<A0> >
+                          , bd::scalar_< bd::floating_<A0> >
+                          )
+  {
+    BOOST_FORCEINLINE A0 operator() (const fast_tag &
+                                    , bd::functor<bs::tag::ceil_> const&
+                                    , A0 a0, A0 a1) const BOOST_NOEXCEPT
+    {
+      return fnms(div(ceil, a0, a1), a1, a0);
     }
   };
 } } }
