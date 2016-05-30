@@ -366,57 +366,6 @@ set ( SOURCES
    tand.cpp
    tan.cpp
    tanpi.cpp
-#aliases
-   bitwise_not.cpp
-   if_zero_else_allbits.cpp
-   if_allbits_else_zero.cpp
-   if_nan_else.cpp
-   if_else_nan.cpp
-<<<<<<< 2cb167f04f097ee3334b3b4c8845f67a675757af
-=======
-   where.cpp
-   select.cpp
-   sel.cpp
-   eq.cpp
-   is_eq.cpp
-   ge.cpp
-   is_ge.cpp
-   gt.cpp
-   is_gt.cpp
-   testz.cpp
-   are_disjoint.cpp
-   le.cpp
-   is_le.cpp
-   lt.cpp
-   is_lt.cpp
-   ne.cpp
-   neq.cpp
-   is_neq.cpp
-   is_nge.cpp
-   is_ngt.cpp
-   is_nle.cpp
-   is_nlt.cpp
-   fmax.cpp
-   fmin.cpp
-   rint.cpp
-   if_add.cpp
-   if_dec.cpp
-   if_inc.cpp
-   if_sub.cpp
-   shl.cpp
-   shli.cpp
-   shra.cpp
-   shar.cpp
-   shrai.cpp
-   shri.cpp
-   ifix.cpp
-   fix.cpp
-   neg.cpp
-   itrunc.cpp
-   angle.cpp
-   is_not_finite.cpp
-   is_not_invalid.cpp
->>>>>>> rem now follows the div scheme
 #eulerian
    stirling.cpp
    gamma.cpp
