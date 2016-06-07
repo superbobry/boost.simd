@@ -9,8 +9,8 @@
   (See accompanying file LICENSE.md or copy at http://boost.org/LICENSE_1_0.txt)
 */
 //==================================================================================================
-#ifndef BOOST_SIMD_ARCH_COMMON_FUNCTION_GENERIC_COSD_HPP_INCLUDED
-#define BOOST_SIMD_ARCH_COMMON_FUNCTION_GENERIC_COSD_HPP_INCLUDED
+#ifndef BOOST_SIMD_ARCH_COMMON_GENERIC_FUNCTION_COSD_HPP_INCLUDED
+#define BOOST_SIMD_ARCH_COMMON_GENERIC_FUNCTION_COSD_HPP_INCLUDED
 
 #include <boost/simd/arch/common/detail/generic/trigo.hpp>
 #include <boost/simd/meta/is_not_scalar.hpp>
@@ -32,20 +32,18 @@ namespace boost { namespace simd { namespace ext
       return detail::trig_base<A0,tag::degree_tag,is_not_scalar_t<A0>,tag::big_tag>::cosa(a0);
     }
   };
-
   BOOST_DISPATCH_OVERLOAD ( cosd_
                           , (typename A0)
                           , bd::cpu_
-                          , bd::generic_< bd::floating_<A0> >
                           , bs::fast_tag
+                          , bd::generic_< bd::floating_<A0> >
                           )
   {
-    BOOST_FORCEINLINE A0 operator() ( A0 const& a0,  fast_tag const &) const BOOST_NOEXCEPT
+    BOOST_FORCEINLINE A0 operator() (const fast_tag &,  A0 const& a0) const BOOST_NOEXCEPT
     {
       return detail::trig_base<A0,tag::degree_tag,is_not_scalar_t<A0>,tag::clipped_pio4_tag>::cosa(a0);
     }
   };
-
   BOOST_DISPATCH_OVERLOAD ( cosd_
                           , (typename A0, typename A1)
                           , bd::cpu_

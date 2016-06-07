@@ -14,7 +14,6 @@
 
 #include <boost/simd/function/round2even.hpp>
 #include <boost/simd/function/toint.hpp>
-#include <boost/simd/function/toints.hpp>
 #include <boost/dispatch/function/overload.hpp>
 #include <boost/dispatch/meta/as_integer.hpp>
 #include <boost/config.hpp>
@@ -33,7 +32,6 @@ namespace boost { namespace simd { namespace ext
       return a0;
     }
   };
-
   BOOST_DISPATCH_OVERLOAD ( iround2even_
                           , (typename A0)
                           , bd::cpu_
@@ -42,33 +40,31 @@ namespace boost { namespace simd { namespace ext
   {
     BOOST_FORCEINLINE bd::as_integer_t<A0> operator() ( A0 const& a0) const BOOST_NOEXCEPT
     {
-      return toints(round2even(a0));
+      return saturated_(toint)(round2even(a0));
     }
   };
-
   BOOST_DISPATCH_OVERLOAD ( iround2even_
                           , (typename A0)
                           , bd::cpu_
-                          , bd::generic_<bd::integer_<A0> >
                           , boost::simd::fast_tag
+                          , bd::generic_<bd::integer_<A0> >
                           )
   {
-    BOOST_FORCEINLINE A0 operator() ( A0 const& a0
-                                    , fast_tag const& ) const BOOST_NOEXCEPT
+    BOOST_FORCEINLINE A0 operator() (const fast_tag &,  A0 const& a0
+                                    ) const BOOST_NOEXCEPT
     {
       return a0;
     }
   };
-
   BOOST_DISPATCH_OVERLOAD ( iround2even_
                           , (typename A0)
                           , bd::cpu_
-                          , bd::generic_<bd::floating_<A0> >
                           , boost::simd::fast_tag
+                          , bd::generic_<bd::floating_<A0> >
                           )
   {
-    BOOST_FORCEINLINE bd::as_integer_t<A0> operator() ( A0 const& a0
-                                                      , fast_tag const& ) const BOOST_NOEXCEPT
+    BOOST_FORCEINLINE bd::as_integer_t<A0> operator() (const fast_tag &,  A0 const& a0
+                                                      ) const BOOST_NOEXCEPT
     {
       return toint(round2even(a0));
     }

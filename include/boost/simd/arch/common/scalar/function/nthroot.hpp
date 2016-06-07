@@ -9,8 +9,8 @@
   (See accompanying file LICENSE.md or copy at http://boost.org/LICENSE_1_0.txt)
 */
 //==================================================================================================
-#ifndef BOOST_SIMD_ARCH_COMMON_FUNCTION_SCALAR_NTHROOT_HPP_INCLUDED
-#define BOOST_SIMD_ARCH_COMMON_FUNCTION_SCALAR_NTHROOT_HPP_INCLUDED
+#ifndef BOOST_SIMD_ARCH_COMMON_SCALAR_FUNCTION_NTHROOT_HPP_INCLUDED
+#define BOOST_SIMD_ARCH_COMMON_SCALAR_FUNCTION_NTHROOT_HPP_INCLUDED
 #include <boost/simd/function/fast.hpp>
 
 #ifndef BOOST_SIMD_NO_INFINITIES
@@ -67,17 +67,16 @@ namespace boost { namespace simd { namespace ext
       return (is_ltza0 && is_odda1)? -y : y;
     }
   };
-
   BOOST_DISPATCH_OVERLOAD ( nthroot_
                           , (typename A0, typename A1)
                           , bd::cpu_
+                          , boost::simd::fast_tag
                           , bd::scalar_< bd::floating_<A0> >
                           , bd::scalar_< bd::integer_<A1> >
-                          , boost::simd::fast_tag
                           )
   {
-    inline A0 operator() ( A0 a0, A1 a1
-                         , fast_tag const&) const BOOST_NOEXCEPT
+    inline A0 operator() (const fast_tag &,  A0 a0, A1 a1
+                         ) const BOOST_NOEXCEPT
     {
       auto is_ltza0 = is_ltz(a0);
       auto is_odda1 = is_odd(a1);

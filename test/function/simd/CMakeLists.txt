@@ -7,17 +7,19 @@
 ##===================================================================================================
 
 ## Larger test suites go there
+add_subdirectory(combine)
 add_subdirectory(extract)
 add_subdirectory(genmask)
 add_subdirectory(insert)
 add_subdirectory(load)
 add_subdirectory(make)
+add_subdirectory(slice)
+add_subdirectory(slide)
 add_subdirectory(splat)
 
 set ( SOURCES
 abs.cpp
-abss.cpp
-adds.cpp
+abs_s.cpp
 aligned_load.cpp
 aligned_store.cpp
 all.cpp
@@ -44,12 +46,17 @@ clz.cpp
 complement.cpp
 conj.cpp
 copysign.cpp
+correct_fma.cpp
 ctz.cpp
+dec.cpp
+dec_s.cpp
 dist.cpp
-dists.cpp
+dist_s.cpp
 divides.cpp
-divs.cpp
+divides_s.cpp
 exp.cpp
+exp2.cpp
+expm1.cpp
 enumerate.cpp
 ffs.cpp
 firstbitset.cpp
@@ -80,7 +87,8 @@ if_zero_else.cpp
 if_zero_else_one.cpp
 ilog2.cpp
 ilogb.cpp
-
+inc.cpp
+inc_s.cpp
 indeg.cpp
 inrad.cpp
 iround2even.cpp
@@ -137,6 +145,10 @@ is_real.cpp
 is_unord.cpp
 ldexp.cpp
 lo.cpp
+log.cpp
+log10.cpp
+log1p.cpp
+log2.cpp
 logical_and.cpp
 logical_andnot.cpp
 logical_notand.cpp
@@ -158,19 +170,26 @@ minmag.cpp
 minnum.cpp
 minnummag.cpp
 minus.cpp
+minus_s.cpp
 minusone.cpp
+minusone_s.cpp
 modf.cpp
 multiplies.cpp
+multiplies_s.cpp
 negate.cpp
 negatenz.cpp
 negif.cpp
 negifnot.cpp
-negs.cpp
+#neg.cpp
+neg_s.cpp
 nextafter.cpp
 next.cpp
 oneminus.cpp
+oneminus_s.cpp
 oneplus.cpp
+oneplus_s.cpp
 plus.cpp
+plus_s.cpp
 posmax.cpp
 posmin.cpp
 predecessor.cpp
@@ -195,21 +214,25 @@ signnz.cpp
 sort.cpp
 sqr_abs.cpp
 sqr.cpp
-sqrs.cpp
+sqr_s.cpp
 sqrt1pm1.cpp
 sqrt.cpp
 store.cpp
-subs.cpp
 successor.cpp
 tenpower.cpp
 tofloat.cpp
 toint.cpp
+toint_s.cpp
+touint.cpp
+touint_s.cpp
 trunc.cpp
 two_add.cpp
 two_prod.cpp
 two_split.cpp
-#ulpdist.cpp
+ulpdist.cpp
+twopower.cpp
 unary_minus.cpp
+unary_minus_s.cpp
 unary_plus.cpp
 
 #any.cpp
@@ -219,7 +242,7 @@ unary_plus.cpp
 #compare_less.cpp
 #compare_less_equal.cpp
 #compare_not_equal.cpp
-#correct_fma.cpp TODO
+
 #divceil
 #divfix
 #divfloor
@@ -249,7 +272,6 @@ unary_plus.cpp
 #rror.cpp TODO
 #splatted_maximum.cpp//TODO all_reduce
 #splatted_minimum.cpp
-#twopower.cpp //TODO shift_left multi index
 ####deinterleave_first.cpp
 ####deinterleave_second.cpp
 ####dot.cpp

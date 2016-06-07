@@ -9,8 +9,8 @@
   (See accompanying file LICENSE.md or copy at http://boost.org/LICENSE_1_0.txt)
 */
 //==================================================================================================
-#ifndef BOOST_SIMD_ARCH_COMMON_FUNCTION_SCALAR_LOG2_HPP_INCLUDED
-#define BOOST_SIMD_ARCH_COMMON_FUNCTION_SCALAR_LOG2_HPP_INCLUDED
+#ifndef BOOST_SIMD_ARCH_COMMON_SCALAR_FUNCTION_LOG2_HPP_INCLUDED
+#define BOOST_SIMD_ARCH_COMMON_SCALAR_FUNCTION_LOG2_HPP_INCLUDED
 #include <boost/simd/function/std.hpp>
 
 #include <boost/simd/arch/common/detail/scalar/logarithm.hpp>
@@ -37,7 +37,6 @@ namespace boost { namespace simd { namespace ext
       return detail::logarithm<A0,is_not_scalar_t<A0>>::log2(a0);
     }
   };
-
   BOOST_DISPATCH_OVERLOAD ( log2_
                           , (typename A0)
                           , bd::cpu_
@@ -49,7 +48,6 @@ namespace boost { namespace simd { namespace ext
       return bs::ilog2(a0);
     }
   };
-
   BOOST_DISPATCH_OVERLOAD ( log2_
                           , (typename A0, typename A1)
                           , bd::cpu_
@@ -62,7 +60,6 @@ namespace boost { namespace simd { namespace ext
       return bs::frexp(a0, a1);
     }
   };
-
   BOOST_DISPATCH_OVERLOAD ( log2_
                           , (typename A0, typename A1, typename A2)
                           , bd::cpu_
@@ -76,16 +73,15 @@ namespace boost { namespace simd { namespace ext
       return bs::frexp(a0, a1, a2);
     }
   };
-
   BOOST_DISPATCH_OVERLOAD ( log2_
                           , (typename A0)
                           , bd::cpu_
-                          , bd::scalar_< bd::arithmetic_<A0> >
                           , boost::simd::std_tag
+                          , bd::scalar_< bd::arithmetic_<A0> >
                           )
   {
-    BOOST_FORCEINLINE A0 operator() (A0 a0
-                                    , std_tag const& ) const BOOST_NOEXCEPT
+    BOOST_FORCEINLINE A0 operator() (const std_tag &, A0 a0
+                                    ) const BOOST_NOEXCEPT
     {
        return std::log2(a0);
     }

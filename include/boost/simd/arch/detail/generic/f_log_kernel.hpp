@@ -29,6 +29,7 @@
 #include <boost/simd/arch/detail/scalar/horner.hpp>
 #include <boost/simd/logical.hpp>
 #include <boost/dispatch/meta/as_integer.hpp>
+#include <tuple>
 
 namespace boost { namespace simd { namespace detail
 {
@@ -54,10 +55,10 @@ namespace boost { namespace simd { namespace detail
                            A0& y) BOOST_NOEXCEPT
     {
       i_t e;
-      x = fast_(frexp)(a0, e);
+      std::tie(x, e) = fast_(frexp)(a0);
       auto xltsqrthf = (x < Sqrt_2o_2<A0>());
       fe = seladd(xltsqrthf, tofloat(e), Mone<A0>());
-      x =  minusone(seladd(xltsqrthf, x, x));
+      x =  saturated_(minusone)(seladd(xltsqrthf, x, x));
       x2 = sqr(x);
       // performances informations using this kernel for nt2::log
       // exhaustive and bench tests with g++-4.7 sse4.2 or scalar give:

@@ -14,9 +14,9 @@
 
 #include <boost/simd/function/fast.hpp>
 #include <boost/simd/arch/detail/tags.hpp>
-#include <boost/simd/function/minusone.hpp>
 #include <boost/simd/function/tofloat.hpp>
 #include <boost/simd/function/sqr.hpp>
+#include <boost/simd/function/fast.hpp>
 #include <boost/simd/function/genmask.hpp>
 #include <boost/simd/function/unary_minus.hpp>
 #include <boost/simd/function/is_greater.hpp>
@@ -26,6 +26,7 @@
 #include <boost/simd/function/seladd.hpp>
 #include <boost/simd/function/plus.hpp>
 #include <boost/simd/function/minus.hpp>
+#include <boost/simd/function/minusone.hpp>
 #include <boost/simd/function/multiplies.hpp>
 #include <boost/simd/function/divides.hpp>
 #include <boost/simd/function/bitwise_and.hpp>
@@ -72,10 +73,10 @@ namespace boost { namespace simd
         using i_t = bd::as_integer_t<A0, signed>;
         A0 x;
         i_t k;
-        bs::fast(frexp)(a0, x, k);
+        std::tie(x, k) = bs::fast_(frexp)(a0);
         const i_t x_lt_sqrthf = (Sqrt_2o_2<A0>() > x) ? Mone<i_t>() : Zero<i_t>();
         k += x_lt_sqrthf;
-        f = minusone(x+bitwise_and(x, genmask(x_lt_sqrthf)));
+        f = saturated_(minusone)(x+bitwise_and(x, genmask(x_lt_sqrthf)));
         dk = tofloat(k);
         s = f/(Two<A0>()+f);
         A0 z = sqr(s);
@@ -160,10 +161,11 @@ namespace boost { namespace simd
 //       using i_t = bd::as_integer_t<A0, signed>;
 //       using s_t = bd::scalar_of_t<A0>;
 //       i_t k;
-//       A0 x = frexp(a0, k, fast_);
+//       A0 x;
+//       std::tie(x, k) = bs::fast_(frexp)(a0);
 //       const i_t x_lt_sqrthf = if_else_zero((Sqrt_2o_2<A0>() > x),Mone<i_t>());
 //       k += x_lt_sqrthf;
-//       f = minusone(x+bitwise_and(x, x_lt_sqrthf));
+//       f = saturated_(minusone)(x+bitwise_and(x, x_lt_sqrthf));
 //       dk = tofloat(k);
 //       s = f/(Two<A0>()+f);
 //       A0 z = sqr(s);
