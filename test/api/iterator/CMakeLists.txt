@@ -19,7 +19,7 @@ SET( SOURCES
     output_range.cpp
     realigned_input_range.cpp
     realigned_output_range.cpp
-#    shifted_iterator.cpp
+    shifted_iterator.cpp
   )
 
 make_unit( "api.iterator" ${SOURCES})
