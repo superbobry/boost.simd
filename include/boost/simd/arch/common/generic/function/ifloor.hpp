@@ -14,8 +14,8 @@
 
 #include <boost/simd/function/floor.hpp>
 #include <boost/simd/function/toint.hpp>
-#include <boost/dispatch/function/overload.hpp>
-#include <boost/dispatch/meta/as_integer.hpp>
+#include <boost/simd/detail/dispatch/function/overload.hpp>
+#include <boost/simd/detail/dispatch/meta/as_integer.hpp>
 #include <boost/config.hpp>
 
 namespace boost { namespace simd { namespace ext
@@ -42,7 +42,7 @@ namespace boost { namespace simd { namespace ext
   {
     BOOST_FORCEINLINE bd::as_integer_t<A0> operator() ( A0 a0) const BOOST_NOEXCEPT
     {
-      return saturated_(toint)(bs::floor(a0));
+      return bs::saturated_(toint)(bs::floor(a0));
     }
   };
 } } }

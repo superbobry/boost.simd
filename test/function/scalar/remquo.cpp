@@ -9,7 +9,7 @@
 //==================================================================================================
 #include <boost/simd/function/scalar/remquo.hpp>
 #include <simd_test.hpp>
-#include <boost/dispatch/meta/as_integer.hpp>
+#include <boost/simd/detail/dispatch/meta/as_integer.hpp>
 #include <boost/simd/constant/inf.hpp>
 #include <boost/simd/constant/minf.hpp>
 #include <boost/simd/constant/mone.hpp>
@@ -18,7 +18,7 @@
 #include <boost/simd/constant/zero.hpp>
 #include <utility>
 
-#ifndef STF_NO_INVALIDS
+#ifndef BOOST_SIMD_NO_INVALIDS
 STF_CASE_TPL(" remquo invalid", STF_IEEE_TYPES)
 {
   namespace bs = boost::simd;

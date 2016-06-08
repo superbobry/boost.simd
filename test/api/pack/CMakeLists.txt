@@ -7,12 +7,12 @@
 ##===================================================================================================
 
 add_subdirectory(ctor)
+add_subdirectory(proxy)
 
 set ( SOURCES
       concepts.cpp
       hierarchy.cpp
       iterators.cpp
-      proxy.cpp
     )
 
 make_unit( "api.pack" ${SOURCES})

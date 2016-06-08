@@ -9,7 +9,7 @@
 //==================================================================================================
 #include <boost/simd/function/scalar/maxmag.hpp>
 #include <simd_test.hpp>
-#include <boost/dispatch/meta/as_integer.hpp>
+#include <boost/simd/detail/dispatch/meta/as_integer.hpp>
 #include <boost/simd/constant/inf.hpp>
 #include <boost/simd/constant/minf.hpp>
 #include <boost/simd/constant/mone.hpp>
@@ -27,7 +27,7 @@ STF_CASE_TPL (" maxmag real",  STF_IEEE_TYPES)
   STF_EXPR_IS(maxmag(T(),T()), T);
 
   // specific values tests
-#ifndef STF_NO_INVALIDS
+#ifndef BOOST_SIMD_NO_INVALIDS
   STF_EQUAL(maxmag(bs::Inf<T>(),  bs::Inf<T>()),  bs::Inf<T>());
   STF_EQUAL(maxmag(bs::Minf<T>(), bs::Minf<T>()), bs::Minf<T>());
   STF_IEEE_EQUAL(maxmag(bs::Nan<T>(),  bs::Nan<T>()),  bs::Nan<T>());

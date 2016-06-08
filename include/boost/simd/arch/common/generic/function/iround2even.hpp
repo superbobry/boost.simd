@@ -12,10 +12,11 @@
 #ifndef BOOST_SIMD_ARCH_COMMON_GENERIC_FUNCTION_IROUND2EVEN_HPP_INCLUDED
 #define BOOST_SIMD_ARCH_COMMON_GENERIC_FUNCTION_IROUND2EVEN_HPP_INCLUDED
 
+#include <boost/simd/function/fast.hpp>
 #include <boost/simd/function/round2even.hpp>
 #include <boost/simd/function/toint.hpp>
-#include <boost/dispatch/function/overload.hpp>
-#include <boost/dispatch/meta/as_integer.hpp>
+#include <boost/simd/detail/dispatch/function/overload.hpp>
+#include <boost/simd/detail/dispatch/meta/as_integer.hpp>
 #include <boost/config.hpp>
 
 namespace boost { namespace simd { namespace ext

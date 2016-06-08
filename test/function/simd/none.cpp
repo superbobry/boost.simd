@@ -26,12 +26,12 @@ void test(Env& $)
   for(std::size_t i = 0; i < N; ++i)
   {
     a1[i] = (i%2) ? T(i) : T(-i);
-    a2[i] = (i%2) ? T(i+1) : T(-i);
+    a2[i] = (i%2) ? T(i+1) : T(-i*2+1);
     b = b && a1[i] == 0;
     c = c && a2[i] == 0;
   }
-  p_t aa1(&a1[0], &a1[N]);
-  p_t aa2(&a2[0], &a2[N]);
+  p_t aa1(&a1[0], &a1[0]+N);
+  p_t aa2(&a2[0], &a2[0]+N);
   STF_EQUAL(bs::none(aa1), b);
   STF_EQUAL(bs::none(aa2), c);
 }

@@ -1,13 +1,10 @@
 //==================================================================================================
-/*!
-  @file
-
+/**
   Copyright 2016 NumScale SAS
-  Copyright 2016 J.T. Lapreste
 
   Distributed under the Boost Software License, Version 1.0.
   (See accompanying file LICENSE.md or copy at http://boost.org/LICENSE_1_0.txt)
-*/
+**/
 //==================================================================================================
 #include <boost/simd/pack.hpp>
 #include <boost/simd/function/all.hpp>
@@ -30,8 +27,8 @@ void test(Env& $)
     b = b && a1[i]!= 0;
     c = c && a2[i]!= 0;
   }
-  p_t aa1(&a1[0], &a1[N]);
-  p_t aa2(&a2[0], &a2[N]);
+  p_t aa1(&a1[0], &a1[0]+N);
+  p_t aa2(&a2[0], &a2[0]+N);
 
   STF_EQUAL(bs::all(aa1), b);
   STF_EQUAL(bs::all(aa2), c);

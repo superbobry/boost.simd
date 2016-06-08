@@ -1,20 +1,18 @@
 //==================================================================================================
-/*!
-  @file
-
-  @copyright 2016 NumScale SAS
+/**
+  Copyright 2016 NumScale SAS
 
   Distributed under the Boost Software License, Version 1.0.
   (See accompanying file LICENSE.md or copy at http://boost.org/LICENSE_1_0.txt)
-*/
+**/
 //==================================================================================================
 #ifndef BOOST_SIMD_ARCH_X86_AVX2_SIMD_FUNCTION_ALIGNED_STORE_HPP_INCLUDED
 #define BOOST_SIMD_ARCH_X86_AVX2_SIMD_FUNCTION_ALIGNED_STORE_HPP_INCLUDED
 
-#include <boost/dispatch/adapted/common/pointer.hpp>
+#include <boost/simd/detail/dispatch/adapted/common/pointer.hpp>
 #include <boost/align/is_aligned.hpp>
 #include <boost/simd/meta/hierarchy/simd.hpp>
-#include <boost/dispatch/function/overload.hpp>
+#include <boost/simd/detail/dispatch/function/overload.hpp>
 #include <boost/config.hpp>
 
 namespace boost { namespace simd { namespace ext
@@ -37,7 +35,6 @@ namespace boost { namespace simd { namespace ext
        _mm256_store_si256(reinterpret_cast<__m256i*>(a1), a0);
     }
   };
-
 } } }
 
 #endif

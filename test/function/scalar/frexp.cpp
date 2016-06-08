@@ -11,7 +11,7 @@
 #include <boost/simd/function/fast.hpp>
 #include <boost/simd/function/std.hpp>
 #include <simd_test.hpp>
-#include <boost/dispatch/meta/as_integer.hpp>
+#include <boost/simd/detail/dispatch/meta/as_integer.hpp>
 #include <boost/simd/constant/inf.hpp>
 #include <boost/simd/constant/minf.hpp>
 #include <boost/simd/constant/mone.hpp>
@@ -45,7 +45,7 @@ STF_CASE_TPL(" frexp0", STF_IEEE_TYPES)
     STF_EQUAL(ldexp(m,e),a);
   }
 
-#ifndef STF_NO_DENORMALS
+#ifndef BOOST_SIMD_NO_DENORMALS
   {
     namespace bs = boost::simd;
     iT e;
@@ -131,7 +131,7 @@ STF_CASE_TPL(" frexp0", STF_IEEE_TYPES)
     STF_EQUAL(ldexp(m,e),a);
   }
 
-#ifndef STF_NO_DENORMALS
+#ifndef BOOST_SIMD_NO_DENORMALS
   {
     namespace bs = boost::simd;
     iT e;

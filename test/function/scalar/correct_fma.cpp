@@ -10,7 +10,7 @@
 #include <boost/simd/function/scalar/correct_fma.hpp>
 #include <boost/simd/function/std.hpp>
 #include <simd_test.hpp>
-#include <boost/dispatch/meta/as_integer.hpp>
+#include <boost/simd/detail/dispatch/meta/as_integer.hpp>
 #include <boost/simd/constant/inf.hpp>
 #include <boost/simd/constant/minf.hpp>
 #include <boost/simd/constant/mone.hpp>
@@ -33,7 +33,7 @@ STF_CASE_TPL (" correct_fma real",  STF_IEEE_TYPES)
   STF_EXPR_IS(correct_fma(T(),T(),T()), T);
 
   // specific values tests
-#ifndef STF_NO_INVALIDS
+#ifndef BOOST_SIMD_NO_INVALIDS
   STF_EQUAL(correct_fma(bs::Inf<T>(), bs::Inf<T>(), bs::Inf<T>()), bs::Inf<T>());
   STF_IEEE_EQUAL(correct_fma(bs::Minf<T>(), bs::Minf<T>(), bs::Minf<T>()), bs::Nan<T>());
   STF_IEEE_EQUAL(correct_fma(bs::Nan<T>(), bs::Nan<T>(), bs::Nan<T>()), bs::Nan<T>());
@@ -88,7 +88,7 @@ STF_CASE_TPL (" correct_fma std real",  STF_IEEE_TYPES)
   STF_EXPR_IS(correct_fma(T(),T(),T()), T);
 
   // specific values tests
-#ifndef STF_NO_INVALIDS
+#ifndef BOOST_SIMD_NO_INVALIDS
   STF_EQUAL( bs::std_(correct_fma)(bs::Inf<T>(), bs::Inf<T>(), bs::Inf<T>()), bs::Inf<T>());
   STF_IEEE_EQUAL( bs::std_(correct_fma)(bs::Minf<T>(), bs::Minf<T>(), bs::Minf<T>()), bs::Nan<T>());
   STF_IEEE_EQUAL( bs::std_(correct_fma)(bs::Nan<T>(), bs::Nan<T>(), bs::Nan<T>()), bs::Nan<T>());

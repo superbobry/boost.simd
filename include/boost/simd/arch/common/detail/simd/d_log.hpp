@@ -18,7 +18,7 @@
 #include <boost/simd/function/simd/is_ltz.hpp>
 #include <boost/simd/function/simd/is_equal.hpp>
 #include <boost/simd/function/simd/frexp.hpp>
-#include <boost/simd/function/simd/seladd.hpp>
+#include <boost/simd/function/simd/if_plus.hpp>
 #include <boost/simd/function/simd/plus.hpp>
 #include <boost/simd/function/simd/minus.hpp>
 #include <boost/simd/function/simd/multiplies.hpp>
@@ -39,8 +39,8 @@
 #include <boost/simd/constant/mone.hpp>
 #include <boost/simd/constant/minf.hpp>
 #include <boost/simd/arch/common/detail/tags.hpp>
-#include <boost/dispatch/meta/as_integer.hpp>
-#include <boost/dispatch/meta/scalar_of.hpp>
+#include <boost/simd/detail/dispatch/meta/as_integer.hpp>
+#include <boost/simd/detail/dispatch/meta/scalar_of.hpp>
 #include <boost/config.hpp>
 #include <tuple>
 

@@ -13,7 +13,7 @@
 #define BOOST_SIMD_FUNCTION_SIMD_NBTRUE_HPP_INCLUDED
 
 #include <boost/simd/function/scalar/nbtrue.hpp>
-#include <boost/simd/arch/common/generic/function/autodispatcher.hpp>
+#include <boost/simd/arch/common/simd/function/nbtrue.hpp>
 
 #if defined(BOOST_HW_SIMD_X86)
 
@@ -24,7 +24,7 @@
 #    include <boost/simd/arch/x86/sse2/simd/function/nbtrue.hpp>
 #  endif
 #  if BOOST_HW_SIMD_X86 >= BOOST_HW_SIMD_X86_AVX_VERSION
-// #    include <boost/simd/arch/x86/avx/simd/function/nbtrue.hpp>
+#    include <boost/simd/arch/x86/avx/simd/function/nbtrue.hpp>
 #  endif
 
 #endif

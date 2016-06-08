@@ -15,7 +15,7 @@
 
 #include <boost/simd/function/simd/genmask.hpp>
 #include <boost/simd/constant/allbits.hpp>
-#include <boost/dispatch/meta/as_integer.hpp>
+#include <boost/simd/detail/dispatch/meta/as_integer.hpp>
 
 namespace boost { namespace simd { namespace ext
 {
@@ -44,7 +44,7 @@ namespace boost { namespace simd { namespace ext
     BOOST_FORCEINLINE logical<sA0> operator() ( const A0 & a0) const BOOST_NOEXCEPT
     {
       using i_t = bd::as_integer_t<A0>;
-      return any(bitwise_cast<i_t>(a0));
+      return bitwise_cast<logical<sA0>>(any(bitwise_cast<i_t>(a0)));
     }
   };
 

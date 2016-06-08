@@ -22,7 +22,7 @@
 #include <boost/simd/function/scalar/is_negative.hpp>
 #include <boost/simd/function/scalar/is_odd.hpp>
 #include <boost/simd/function/scalar/pow_abs.hpp>
-#include <boost/dispatch/function/overload.hpp>
+#include <boost/simd/detail/dispatch/function/overload.hpp>
 #include <boost/config.hpp>
 #include <cmath>
 
@@ -48,7 +48,8 @@ namespace boost { namespace simd { namespace ext
       return  (is_negative(a0) && is_odd(a1)) ? -z : z;
     }
   };
-   BOOST_DISPATCH_OVERLOAD ( pow_
+
+  BOOST_DISPATCH_OVERLOAD ( pow_
                           , (typename A0)
                           , bd::cpu_
                           , bs::std_tag
@@ -61,6 +62,8 @@ namespace boost { namespace simd { namespace ext
       return std::pow(a0, a1);
     }
   };
+
+
 } } }
 
 

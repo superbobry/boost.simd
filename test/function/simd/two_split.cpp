@@ -1,19 +1,15 @@
 //==================================================================================================
-/*!
-  @file
-
+/**
   Copyright 2016 NumScale SAS
-  Copyright 2016 J.T. Lapreste
 
   Distributed under the Boost Software License, Version 1.0.
   (See accompanying file LICENSE.md or copy at http://boost.org/LICENSE_1_0.txt)
-*/
+**/
 //==================================================================================================
 #include <boost/simd/pack.hpp>
 #include <boost/simd/function/two_split.hpp>
 #include <boost/simd/constant/eps.hpp>
 #include <boost/simd/meta/cardinal_of.hpp>
-#include <boost/dispatch/meta/as_integer.hpp>
 #include <simd_test.hpp>
 
 template <typename T, std::size_t N, typename Env>
@@ -31,10 +27,10 @@ void test(Env& $)
      a1[i] = (i%2) ? T(i) : T(-i);
      std::tie(r1[i], r2[i]) = bs::two_split(a1[i]);
    }
-  p_t aa1(&a1[0], &a1[N]);
+  p_t aa1(&a1[0], &a1[0]+N);
   p_t rr21, rr22;
-  p_t rr1(&r1[0], &r1[N]);
-  p_t rr2(&r2[0], &r2[N]);
+  p_t rr1(&r1[0], &r1[0]+N);
+  p_t rr2(&r2[0], &r2[0]+N);
   std::tie(rr21, rr22) = bs::two_split(aa1);
   STF_IEEE_EQUAL(rr21, rr1);
   STF_IEEE_EQUAL(rr22, rr2);

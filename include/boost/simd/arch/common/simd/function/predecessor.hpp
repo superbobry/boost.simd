@@ -19,15 +19,15 @@
 #include <boost/simd/constant/valmin.hpp>
 #include <boost/simd/function/simd/bitfloating.hpp>
 #include <boost/simd/function/simd/bitinteger.hpp>
-#include <boost/simd/function/simd/if_allbits_else.hpp>
+#include <boost/simd/function/simd/if_nan_else.hpp>
 #include <boost/simd/function/simd/is_gez.hpp>
 #include <boost/simd/function/simd/is_less.hpp>
 #include <boost/simd/function/simd/is_nan.hpp>
 #include <boost/simd/function/simd/is_not_equal.hpp>
 #include <boost/simd/function/simd/minusone.hpp>
 #include <boost/simd/function/simd/plus.hpp>
-#include <boost/simd/function/simd/seladd.hpp>
-#include <boost/simd/function/simd/selsub.hpp>
+#include <boost/simd/function/simd/if_plus.hpp>
+#include <boost/simd/function/simd/if_minus.hpp>
 #include <boost/simd/function/simd/minus.hpp>
 #include <boost/assert.hpp>
 
@@ -43,7 +43,7 @@ namespace boost { namespace simd { namespace ext
    {
       BOOST_FORCEINLINE A0 operator()( const A0& a0) const BOOST_NOEXCEPT
       {
-        return seladd(neq(a0, Valmin<A0>()), a0, Mone<A0>());
+        return if_plus(neq(a0, Valmin<A0>()), a0, Mone<A0>());
       }
    };
 
@@ -69,7 +69,7 @@ namespace boost { namespace simd { namespace ext
       BOOST_FORCEINLINE A0 operator()( const A0& a0, const A0& a1) const BOOST_NOEXCEPT
       {
         BOOST_ASSERT_MSG(assert_all(is_gez(a1)), "predecessor rank must be non negative");
-        return selsub( is_less_equal(Valmin<A0>()+a1, a0), a0, a1);
+        return if_minus( is_less_equal(Valmin<A0>()+a1, a0), a0, a1);
       }
    };
 

@@ -12,7 +12,7 @@
 #define BOOST_SIMD_ARCH_X86_SSE4_1_SIMD_FUNCTION_EXTRACT_HPP_INCLUDED
 
 #include <boost/simd/detail/overload.hpp>
-#include <boost/dispatch/adapted/std/integral_constant.hpp>
+#include <boost/simd/detail/dispatch/adapted/std/integral_constant.hpp>
 
 namespace boost { namespace simd { namespace ext
 {
@@ -64,6 +64,7 @@ namespace boost { namespace simd { namespace ext
     }
   };
 
+#if !defined(BOOST_MSVC)
   //------------------------------------------------------------------------------------------------
   BOOST_DISPATCH_OVERLOAD ( extract_
                           , (typename A0, typename A1)
@@ -78,6 +79,7 @@ namespace boost { namespace simd { namespace ext
       return _mm_extract_epi64(a0, value);
     }
   };
+#endif
 
   //------------------------------------------------------------------------------------------------
   BOOST_DISPATCH_OVERLOAD ( extract_
